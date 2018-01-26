@@ -10,7 +10,7 @@
     ],
     "version": "1.0",
     "minimum-stability": "dev",
-    "require": {
+    "require-dev": {
         "liuliansen/httprequest": "@dev"
     },
     "autoload": {
