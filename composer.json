@@ -8,10 +8,10 @@
             "email": "liansen@d3zz.com"
         }
     ],
-    "version": "1.0",
-    "minimum-stability": "dev",
-    "require-dev": {
-        "liuliansen/httprequest": "@dev"
+    "version": "1.0.0",
+    "minimum-stability": "stable",
+    "require": {
+        "liuliansen/httprequest": "1.0.0"
     },
     "autoload": {
         "psr-4": {
