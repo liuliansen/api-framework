@@ -1,0 +1,21 @@
+{
+    "name": "liuliansen/api-framework",
+    "type": "library",
+    "description": "An simple api framework.",
+    "authors": [
+        {
+            "name": "LianSen",
+            "email": "liansen@d3zz.com"
+        }
+    ],
+    "version": "1.0",
+    "minimum-stability": "dev",
+    "require": {
+        "liuliansen/httprequest": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "api\\": "src/"
+        }
+    }
+}
