@@ -11,7 +11,7 @@
     "version": "1.0",
     "minimum-stability": "dev",
     "require": {
-        "liuliansen/httprequest": "1.0.*"
+        "liuliansen/httprequest": "1.*"
     },
     "autoload": {
         "psr-4": {
