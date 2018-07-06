@@ -11,6 +11,7 @@ namespace api;
 use api\traits\ErrorInfo;
 use api\traits\Success;
 use httprequest\HttpRequest;
+use utils\LogHelper;
 
 /**
  * Class Result
@@ -41,6 +42,11 @@ abstract class Result
     protected $msg;
 
     /**
+     * @var LogHelper
+     */
+    protected $logger      = null;
+
+    /**
      * Result constructor.
      * @param  Api $api
      * @param  HttpRequest $httpRequest
@@ -50,8 +56,22 @@ abstract class Result
         $this->api = $api;
         $this->httpRequest  = $httpRequest;
         $this->origResponse = $httpRequest->getResponseBody();
+        if($this->logger){
+            $this->logger->log($this->api->getUrl().PHP_EOL.$httpRequest->getOrigResponse());
+        }
         $this->parse();
     }
+
+
+    /**
+     * 设置日志对象
+     * @param LogHelper $logger
+     */
+    public function setLogger(LogHelper $logger)
+    {
+        $this->logger = $logger;
+    }
+
 
     /**
      * <pre>
@@ -94,5 +114,25 @@ abstract class Result
     {
         return $this->httpRequest;
     }
+
+
+    /**
+     * 设置错误信息
+     * @param string $file
+     * @param int    $line
+     * @param string $msg
+     * @param int $code
+     */
+    public function setErrorInfo($file,$line,$msg,$code = 503)
+    {
+        $this->success = false;
+        $this->errcode = $code;
+        $this->error   = $msg;
+        if($this->logger){
+            $log = $this->api->getUrl()->getBaseUrl().PHP_EOL . $file. "::". $line. PHP_EOL. $msg;
+            $this->logger->error($log);
+        }
+    }
+
 
 }

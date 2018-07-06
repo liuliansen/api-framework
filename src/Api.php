@@ -10,6 +10,7 @@ namespace api;
 
 use httprequest\HttpRequest;
 use httprequest\Url;
+use utils\LogHelper;
 
 /**
  * Class Api
@@ -46,6 +47,18 @@ abstract class Api
 
     protected $resultCls = '';
 
+    protected $logger      = null;
+
+    /**
+     * @param $logger
+     * @internal param LogHelper $log
+     */
+    public function setLogger(LogHelper $logger)
+    {
+        $this->logger = $logger;
+    }
+
+
     public function __construct($callback = null)
     {
         $this->init();
@@ -70,6 +83,7 @@ abstract class Api
     {
         //Add your code in here if you need do something before the HttpRequest::request.
     }
+
 
     /**
      * <pre>
@@ -99,6 +113,7 @@ abstract class Api
         if(!($this->result instanceof Result)){
             throw new \Exception(static::class.'结果类必须是'.Result::class.'的子孙类');
         }
+        $this->result->setLogger($this->logger);
         $this->afterRequest();
     }
 
