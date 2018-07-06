@@ -92,6 +92,18 @@ abstract class Result
     }
 
     /**
+     * 将响应的json数据转换成array
+     * @return array|bool
+     */
+    public function getJsonArray()
+    {
+        if($this->json){
+            return json_decode($this->json,true);
+        }
+        return false;
+    }
+
+    /**
      * @return string
      */
     public function getMsg()
