@@ -109,12 +109,10 @@ abstract class Api
             throw new \Exception(static::class.'未设置结果类');
         }
         $rf = new \ReflectionClass($this->resultCls);
-        $this->result = $rf->newInstanceArgs([ $this,$httpReq ]);
+        $this->result = $rf->newInstanceArgs([ $this,$httpReq,$this->logger ]);
+
         if(!($this->result instanceof Result)){
             throw new \Exception(static::class.'结果类必须是'.Result::class.'的子孙类');
-        }
-        if(!is_null($this->logger)) {
-            $this->result->setLogger($this->logger);
         }
         $this->afterRequest();
     }

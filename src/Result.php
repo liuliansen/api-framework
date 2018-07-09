@@ -52,12 +52,14 @@ abstract class Result
      * Result constructor.
      * @param  Api $api
      * @param  HttpRequest $httpRequest
+     * @param Logger|null $logger
      */
-    public function __construct(Api $api, HttpRequest $httpRequest)
+    public function __construct(Api $api, HttpRequest $httpRequest,Logger $logger = null)
     {
         $this->api = $api;
         $this->httpRequest  = $httpRequest;
         $this->origResponse = $httpRequest->getResponseBody();
+        $this->logger = $logger;
         if($this->logger){
             $this->logger->log($this->api->getUrl().PHP_EOL.$httpRequest->getOrigResponse());
         }
