@@ -11,6 +11,7 @@ namespace api;
 use api\traits\ErrorInfo;
 use api\traits\Success;
 use httprequest\HttpRequest;
+use traits\OrigResponse;
 use utils\LogHelper;
 
 /**
@@ -21,6 +22,7 @@ abstract class Result
 {
     use ErrorInfo;
     use Success;
+    use OrigResponse;
 
 
     /**
