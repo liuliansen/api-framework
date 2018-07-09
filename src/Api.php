@@ -113,7 +113,9 @@ abstract class Api
         if(!($this->result instanceof Result)){
             throw new \Exception(static::class.'结果类必须是'.Result::class.'的子孙类');
         }
-        $this->result->setLogger($this->logger);
+        if(!is_null($this->logger)) {
+            $this->result->setLogger($this->logger);
+        }
         $this->afterRequest();
     }
 
