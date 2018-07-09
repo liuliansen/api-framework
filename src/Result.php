@@ -100,7 +100,7 @@ abstract class Result
     public function getJsonArray()
     {
         if($this->json){
-            return json_decode($this->json,true);
+            return json_decode($this->origResponse,true);
         }
         return false;
     }
