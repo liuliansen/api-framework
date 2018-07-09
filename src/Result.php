@@ -10,8 +10,9 @@ namespace api;
 
 use api\traits\ErrorInfo;
 use api\traits\Success;
+use api\traits\OrigResponse;
 use httprequest\HttpRequest;
-use traits\OrigResponse;
+
 use utils\Logger;
 
 /**
