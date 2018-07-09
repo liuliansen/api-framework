@@ -10,7 +10,7 @@ namespace api;
 
 use httprequest\HttpRequest;
 use httprequest\Url;
-use utils\LogHelper;
+use utils\Logger;
 
 /**
  * Class Api
@@ -51,9 +51,9 @@ abstract class Api
 
     /**
      * @param $logger
-     * @internal param LogHelper $log
+     * @param Logger $logger
      */
-    public function setLogger(LogHelper $logger)
+    public function setLogger(Logger $logger)
     {
         $this->logger = $logger;
     }
@@ -130,6 +130,7 @@ abstract class Api
     /**
      * @param $name
      * @param $arguments
+     * @return mixed
      */
     public function __call($name, $arguments)
     {

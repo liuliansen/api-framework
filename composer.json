@@ -17,6 +17,16 @@
         "psr-4": {
             "api\\": "src/"
         }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "secure-http":false
+    },
+    "repositories": {
+        "liuliansen": {
+            "type": "composer",
+            "url": "nginx:8888"
+        }
     }
 
 }

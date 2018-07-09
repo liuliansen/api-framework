@@ -12,7 +12,7 @@ use api\traits\ErrorInfo;
 use api\traits\Success;
 use httprequest\HttpRequest;
 use traits\OrigResponse;
-use utils\LogHelper;
+use utils\Logger;
 
 /**
  * Class Result
@@ -44,7 +44,7 @@ abstract class Result
     protected $msg;
 
     /**
-     * @var LogHelper
+     * @var Logger
      */
     protected $logger      = null;
 
@@ -67,9 +67,9 @@ abstract class Result
 
     /**
      * 设置日志对象
-     * @param LogHelper $logger
+     * @param Logger $logger
      */
-    public function setLogger(LogHelper $logger)
+    public function setLogger(Logger $logger)
     {
         $this->logger = $logger;
     }
