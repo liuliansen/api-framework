@@ -10,7 +10,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "liuliansen/httprequest": "1.0.0",
+        "liuliansen/httprequest": "^1.0.0",
         "liuliansen/utils": "^1.0"
     },
     "autoload": {
