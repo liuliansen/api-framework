@@ -62,7 +62,14 @@ abstract class Result
         $this->origResponse = $httpRequest->getResponseBody();
         $this->logger = $logger;
         if($this->logger){
-            $this->logger->log($this->api->getUrl().PHP_EOL.$httpRequest->getOrigResponse());
+            $resHeader = json_encode($httpRequest->getResponseHeader()->get(),JSON_UNESCAPED_UNICODE);
+            $resBody   = $httpRequest->getResponseBody();
+            $extData   = $this->api->getLogExtData();
+            if(is_array($extData) || is_object($extData)){
+                $extData  = json_encode($extData,JSON_UNESCAPED_UNICODE);
+            }
+            $log = $this->api->getUrl()."\t[{$extData}]\t[{$resHeader}]\t[{$resBody}]";
+            $this->logger->log($log);
         }
         $this->parse();
     }
@@ -145,9 +152,16 @@ abstract class Result
         $this->success = false;
         $this->errcode = $code;
         $this->error   = $msg;
-        if($this->logger){
-            $log = $this->api->getUrl()->getBaseUrl().PHP_EOL . $file. "::". $line. PHP_EOL. $msg;
+        if($this->logger){   
+            $resHeader = json_encode($this->httpRequest->getResponseHeader()->get(),JSON_UNESCAPED_UNICODE);
+            $resBody   = $this->httpRequest->getResponseBody();
+            $extData   = $this->api->getLogExtData();
+            if(is_array($extData) || is_object($extData)){
+                $extData  = json_encode($extData,JSON_UNESCAPED_UNICODE);
+            }
+            $log = $this->api->getUrl()."\t[{$extData}]\t[{$msg}]\t[{$file}::{$line}]\t[{$resHeader}]\t[{$resBody}]";
             $this->logger->error($log);
+
         }
     }
 

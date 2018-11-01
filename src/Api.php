@@ -47,7 +47,17 @@ abstract class Api
 
     protected $resultCls = '';
 
+    /**
+     * 日志对象
+     * @var null
+     */
     protected $logger      = null;
+
+    /**
+     * 写入日志额外数据
+     * @var null
+     */
+    protected $logExtData = null;
 
     /**
      * @param $logger
@@ -141,6 +151,15 @@ abstract class Api
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * 获取日志额外数据
+     * @return null
+     */
+    public function getLogExtData()
+    {
+        return $this->logExtData;
     }
 
 }
